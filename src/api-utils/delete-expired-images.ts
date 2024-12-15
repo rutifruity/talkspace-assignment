@@ -4,39 +4,36 @@ import path from "path";
 
 const prisma = new PrismaClient();
 
-// Function to delete expired images
 const deleteExpiredImages = async () => {
   const currentTime = new Date();
 
-  // Fetch images that have expired
-  const expiredImages = await prisma.image.findMany({
-    where: {
-      expiresAt: {
-        lt: currentTime, // Images with expiration date less than the current time
+  try {
+    const expiredImages = await prisma.image.findMany({
+      where: {
+        expiresAt: {
+          lt: currentTime,
+        },
       },
-    },
-  });
-
-  // Loop through each expired image
-  for (const image of expiredImages) {
-    // Delete the image from the database
-    await prisma.image.delete({
-      where: { id: image.id },
     });
 
-    // Delete the image file from the "uploads" directory
-    const filePath = path.join(process.cwd(), "public", image.url);
-    try {
-      if (fs.existsSync(filePath)) {
-        fs.unlinkSync(filePath); // Delete the file from the file system
-        console.log(`Deleted image: ${image.url}`);
-      }
-    } catch (err) {
-      console.error(`Failed to delete image file: ${image.url}`, err);
-    }
-  }
+    for (const image of expiredImages) {
+      const filePath = path.join(process.cwd(), "public", image.url);
 
-  console.log(`Deleted ${expiredImages.length} expired images.`);
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      }
+
+      await prisma.image.delete({
+        where: {
+          id: image.id,
+        },
+      });
+    }
+
+    console.log(`Deleted ${expiredImages.length} expired images.`);
+  } catch (error) {
+    console.error("Error deleting expired images:", error);
+  }
 };
 
 export default deleteExpiredImages;

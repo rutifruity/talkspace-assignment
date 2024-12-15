@@ -1,4 +1,4 @@
-import deleteExpiredImages from "@/api-utils/deleteExpiredImages";
+import deleteExpiredImages from "@/api-utils/delete-expired-images";
 import cron from "node-cron";
 
 // Run the task every day at midnight (00:00)
