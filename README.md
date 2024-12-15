@@ -19,12 +19,12 @@ This is a full-stack image upload application built with Next.js, TypeScript, an
 
 ### Prerequisites
 
-- Node.js (18.x or above)
-- PostgreSQL
+Before getting started, make sure you have the following installed:
 
-### 1. Clone the Repository
+- **Node.js** (18.x or above)
+- **PostgreSQL** (installed and running on your local machine or a remote instance)
+- **Prisma CLI**: If Prisma CLI is not installed globally, you can install it by running:
 
-```bash
-git clone https://github.com/rutifruity/talkspace-assignment.git
-cd talkspace-assignment
-```
+  ```bash
+  npm install -g prisma
+  ```
