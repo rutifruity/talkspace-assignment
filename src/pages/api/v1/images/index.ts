@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import multer from "multer";
-import { saveImage } from "@/api-utils/saveImage";
+import { saveImage } from "@/api-utils/save-image";
+import { getImage } from "@/api-utils/get-image";
 
 const upload = multer({ dest: "public/uploads/" });
 
@@ -29,6 +30,8 @@ export default async function handler(
     return saveImage(req, res);
   }
   if (req.method === "GET") {
+    console.log("inside indexs");
+    return getImage(req, res);
   } else {
     res.setHeader("Allow", ["POST"]);
     res.status(405).end(`Method ${req.method} Not Allowed`);
