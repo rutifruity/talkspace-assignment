@@ -48,7 +48,6 @@ const UploadCard = () => {
               {`${content.imageUpload.fileSelection}: ${selectedFile.name}`}
             </Typography>
           )}
-
           <TextField
             label={content.imageUpload.expirationLabel}
             type="datetime-local"
@@ -64,7 +63,6 @@ const UploadCard = () => {
             }}
             fullWidth
           />
-
           <Button
             variant="contained"
             color="primary"
@@ -77,7 +75,6 @@ const UploadCard = () => {
               content.imageUpload.uploadButton
             )}
           </Button>
-
           {uploadResult && (
             <Typography variant="body1" color="success.main">
               {content.imageUpload.successMessage}:{" "}

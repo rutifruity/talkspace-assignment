@@ -1,20 +1,10 @@
 "use client";
 
 import React from "react";
-import { Typography } from "@mui/material";
-import content from "@/content";
-import UploadCard from "./components/upload-page/upload-card";
-import PageLayout from "./components/shared/page-layout";
+import ImageUploadPage from "./components/upload-page/upload-page";
 
-const ImageUploadPage = () => {
-  return (
-    <PageLayout>
-      <Typography variant="h4" marginBottom="20px">
-        {content.imageUpload.title}
-      </Typography>
-      <UploadCard />
-    </PageLayout>
-  );
+const Page = () => {
+  return <ImageUploadPage />;
 };
 
-export default ImageUploadPage;
+export default Page;
