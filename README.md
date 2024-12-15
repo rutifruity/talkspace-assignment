@@ -23,7 +23,7 @@ This is a full-stack image upload application built with Next.js, TypeScript, an
 
 ## Note on Image Storage in Production
 
-In a true deployed project, images would not be served directly from the public folder, as it would not be a secure or scalable solution. Instead, I would store the images as blobs on a separate server or cloud storage for better performance, scalability, and security. The generated URL for each image would be stored in the database.
+In a deployed project, images would not be served directly from the public folder, as it would not be a secure or scalable solution. Instead, I would store the images as blobs on a separate server or cloud storage for better performance, scalability, and security. The generated URL for each image would be stored in the database.
 
 ## Getting Started
 
