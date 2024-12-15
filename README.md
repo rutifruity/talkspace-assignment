@@ -15,6 +15,12 @@ This is a full-stack image upload application built with Next.js, TypeScript, an
 - **Database**: PostgreSQL with Prisma ORM
 - **Language**: TypeScript
 
+## Notes to TalkSpace from Ruti
+
+- I prefer to use the main page.tsx as a central part of the file structure, rendering the initial page. This approach makes the project easier to maintain, as it keeps all UI components neatly organized under the components folder.
+- I follow a similar structure for the pages/\* directory. I believe that API logic should be well-organized and modular, which is why I handle API-related functionality in small, manageable files within api-utils. The pages/api directory simply routes to the correct functions.
+- I make a conscious effort to separate UI from state logic. This separation results in a cleaner codebase and enhances maintainability. For example, I use custom hooks to manage state in components like ImageDisplay and ImageUpload, ensuring that UI components are focused on rendering and interaction.
+
 ## Getting Started
 
 ### Prerequisites
