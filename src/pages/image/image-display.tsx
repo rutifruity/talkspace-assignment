@@ -10,6 +10,7 @@ import {
 import Image from "next/image";
 import PageLayout from "@/app/components/shared/page-layout";
 import useImageDisplay from "@/hooks/useImageDisplay";
+import content from "@/content";
 
 const ImagePage = () => {
   const router = useRouter();
@@ -20,7 +21,7 @@ const ImagePage = () => {
   return (
     <PageLayout>
       <Typography variant="h4" marginBottom="20px">
-        Image ID: {imageID}
+        {content.imageDisplay.title}: {imageID}
       </Typography>
       <Card sx={{ width: 400, maxWidth: "100%", padding: 2 }}>
         <CardContent>
@@ -61,7 +62,7 @@ const ImagePage = () => {
 
           {!imageUrl && !loading && !error && (
             <Typography variant="body2" color="textSecondary" align="center">
-              No image available
+              {content.imageDisplay.error}
             </Typography>
           )}
         </CardContent>

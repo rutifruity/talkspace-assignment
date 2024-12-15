@@ -10,6 +10,12 @@ const content = {
     fileSelection: "Selected File",
     errorConsole: "Error uploading file",
   },
+  imageDisplay: {
+    error: "No image available",
+    title: "Image ID",
+    imageNotFound: "Image not found or has expired.",
+    errorFetching: "An error occurred while fetching the image",
+  },
 };
 
 export default content;

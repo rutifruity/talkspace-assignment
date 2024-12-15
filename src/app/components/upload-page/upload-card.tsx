@@ -30,8 +30,6 @@ const UploadCard = () => {
         width: "400px",
         boxShadow: 3,
         borderRadius: "10px",
-        overflow: "visible", // Allow the calendar to overflow
-        position: "relative", // Ensure positioning works correctly
       }}
     >
       <CardContent>
@@ -58,6 +56,11 @@ const UploadCard = () => {
             onChange={(e) => setExpiration(e.target.value)}
             slotProps={{
               inputLabel: { shrink: true },
+            }}
+            InputProps={{
+              inputProps: {
+                min: new Date().toISOString().slice(0, 16),
+              },
             }}
             fullWidth
           />

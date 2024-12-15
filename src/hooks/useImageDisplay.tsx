@@ -1,3 +1,4 @@
+import content from "@/content";
 import { useEffect, useState } from "react";
 
 const useImageDisplay = (imageID: string | string[] | undefined) => {
@@ -15,11 +16,11 @@ const useImageDisplay = (imageID: string | string[] | undefined) => {
         const data = await response.json();
         setImageUrl(data.url); // Set image URL
       } else {
-        setError("Image not found or has expired.");
+        setError(content.imageDisplay.imageNotFound);
       }
     } catch (error) {
-      console.error("Error fetching image:", error);
-      setError("An error occurred while fetching the image.");
+      console.error(content.imageDisplay.errorFetching, error);
+      setError(content.imageDisplay.errorFetching);
     } finally {
       setLoading(false); // Stop loading
     }
