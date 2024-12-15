@@ -4,22 +4,16 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import content from "@/content";
 import UploadCard from "./components/upload-page/upload-card";
+import PageLayout from "./components/shared/page-layout";
 
 const ImageUploadPage = () => {
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      height="100vh"
-      padding="20px"
-    >
+    <PageLayout>
       <Typography variant="h4" marginBottom="20px">
         {content.imageUpload.title}
       </Typography>
       <UploadCard />
-    </Box>
+    </PageLayout>
   );
 };
 
