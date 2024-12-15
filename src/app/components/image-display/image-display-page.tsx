@@ -16,7 +16,6 @@ import HeaderText from "../shared/header-text";
 const ImageDisplayPage = () => {
   const router = useRouter();
   const { imageId: imageID } = router.query;
-  console.log("imageID", imageID);
 
   const { imageUrl, loading, error } = useImageDisplay(imageID);
 
