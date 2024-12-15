@@ -30,7 +30,6 @@ export default async function handler(
     return saveImage(req, res);
   }
   if (req.method === "GET") {
-    console.log("inside indexs");
     return getImage(req, res);
   } else {
     res.setHeader("Allow", ["POST"]);

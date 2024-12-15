@@ -19,12 +19,11 @@ const ImagePage = () => {
 
   return (
     <PageLayout>
+      <Typography variant="h4" marginBottom="20px">
+        Image ID: {imageID}
+      </Typography>
       <Card sx={{ width: 400, maxWidth: "100%", padding: 2 }}>
         <CardContent>
-          <Typography variant="h5" gutterBottom>
-            Image ID: {imageID}
-          </Typography>
-
           {loading && (
             <div
               style={{

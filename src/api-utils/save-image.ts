@@ -30,9 +30,10 @@ export const saveImage = async (req: NextApiRequest, res: NextApiResponse) => {
       },
     });
 
-    return res
-      .status(201)
-      .json({ message: "Image uploaded successfully!", url: image.url });
+    return res.status(201).json({
+      message: "Image uploaded successfully!",
+      url: `http://localhost:3000/image/image-display?imageId=${image.id}`,
+    });
   } catch (error) {
     console.error("Error uploading file:", error);
     return res.status(500).json({ error: "Internal Server Error" });

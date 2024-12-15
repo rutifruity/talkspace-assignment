@@ -10,6 +10,12 @@ export const getImage = async (req: NextApiRequest, res: NextApiResponse) => {
       select: { url: true, expiresAt: true },
     });
 
+    const images = await prisma.image.findMany({
+      select: { url: true, expiresAt: true, id: true },
+    });
+
+    console.log("images", images);
+
     if (!image) {
       return res.status(404).json({ error: "Image not found" });
     }
