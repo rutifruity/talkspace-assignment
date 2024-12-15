@@ -31,8 +31,10 @@ Before getting started, make sure you have the following installed:
 
 # Database URL for connecting to PostgreSQL
 
+Create a .env and save the DATABASE_URL
 DATABASE_URL="postgresql://username:password@localhost:5432/database_name?schema=public"
 
-run
+```bash
 npx prisma generate
 npx prisma migrate deploy
+```
