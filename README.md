@@ -28,3 +28,11 @@ Before getting started, make sure you have the following installed:
   ```bash
   npm install -g prisma
   ```
+
+# Database URL for connecting to PostgreSQL
+
+DATABASE_URL="postgresql://username:password@localhost:5432/database_name?schema=public"
+
+run
+npx prisma generate
+npx prisma migrate deploy
