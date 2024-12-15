@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import multer from "multer";
 import { saveImage } from "@/api-utils/save-image";
 import { getImage } from "@/api-utils/get-image";
-import "./cron/deleteExpiredImagesCron"; // Import the cron job to start it
+import "../../../../cron/ delete-expired-images-cron";
 
 const upload = multer({ dest: "public/uploads/" });
 
