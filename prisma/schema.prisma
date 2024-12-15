@@ -15,7 +15,7 @@ datasource db {
 
 model Image {
   id        String   @id @default(uuid())
-  url       String
+  url       String   @unique
   expiresAt DateTime
   createdAt DateTime @default(now())
 }
