@@ -1,8 +1,9 @@
 import content from "@/content";
+import { Image } from "@prisma/client";
 import { useEffect, useState } from "react";
 
 const useImageDisplay = (imageID: string | string[] | undefined) => {
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [image, setImage] = useState<Image | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -14,7 +15,7 @@ const useImageDisplay = (imageID: string | string[] | undefined) => {
       const response = await fetch(`/api/v1/images?imageID=${imageID}`);
       if (response.ok) {
         const data = await response.json();
-        setImageUrl(data.url); // Set image URL
+        setImage(data.image);
       } else {
         setError(content.imageDisplay.imageNotFound);
       }
@@ -32,7 +33,7 @@ const useImageDisplay = (imageID: string | string[] | undefined) => {
     }
   }, [imageID]);
 
-  return { imageUrl, loading, error };
+  return { image, loading, error };
 };
 
 export default useImageDisplay;

@@ -15,6 +15,12 @@ const content = {
     title: "Image ID",
     imageNotFound: "Image not found or has expired.",
     errorFetching: "An error occurred while fetching the image",
+    expirationMessage: (daysLeft: number) =>
+      daysLeft > 0
+        ? `The link to this image will expire in ${daysLeft} day${
+            daysLeft > 1 ? "s" : ""
+          }.`
+        : "The link to this image has already expired.",
   },
   server: {
     saveImageExpiredByError: "The expires by date cannot be in the past.",

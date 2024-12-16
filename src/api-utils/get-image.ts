@@ -17,7 +17,7 @@ export const getImage = async (req: NextApiRequest, res: NextApiResponse) => {
     if (image.url) {
       return res
         .status(200)
-        .json({ message: content.server.imageFound, url: image.url });
+        .json({ message: content.server.imageFound, image });
     } else {
       return res.status(404).json({ error: content.server.imageFileNotFound });
     }
