@@ -3,7 +3,6 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  // Add a test record
   const newImage = await prisma.image.create({
     data: {
       url: "https://example.com/test-image.jpg",
@@ -13,7 +12,6 @@ async function main() {
 
   console.log("Created new image:", newImage);
 
-  // Fetch all images
   const images = await prisma.image.findMany();
   console.log("All images:", images);
 }
