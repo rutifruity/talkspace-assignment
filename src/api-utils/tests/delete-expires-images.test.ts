@@ -15,8 +15,8 @@ jest.mock("@prisma/client", () => {
 const mockPrisma = new PrismaClient();
 
 jest.mock("fs", () => ({
-  unlinkSync: jest.fn(), // Ensure unlinkSync is a mock function
-  existsSync: jest.fn().mockReturnValue(true), // Mock that the file exists
+  unlinkSync: jest.fn(),
+  existsSync: jest.fn().mockReturnValue(true),
 }));
 
 describe("deleteExpiredImages", () => {

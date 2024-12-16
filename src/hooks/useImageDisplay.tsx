@@ -23,7 +23,7 @@ const useImageDisplay = (imageID: string | string[] | undefined) => {
       console.error(content.imageDisplay.errorFetching, error);
       setError(content.imageDisplay.errorFetching);
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
 
