@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
+import content from "@/content";
 
 export const getImage = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -11,17 +12,17 @@ export const getImage = async (req: NextApiRequest, res: NextApiResponse) => {
     });
 
     if (!image) {
-      return res.status(404).json({ error: "Image not found" });
+      return res.status(404).json({ error: content.server.imageNotFound });
     }
     if (image.url) {
       return res
         .status(200)
-        .json({ message: "Successfully found image path", url: image.url });
+        .json({ message: content.server.imageFound, url: image.url });
     } else {
-      return res.status(404).json({ error: "Image file not found" });
+      return res.status(404).json({ error: content.server.imageFileNotFound });
     }
   } catch (error) {
-    console.error("Error fetching image:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    console.error(content.server.getImageError, error);
+    return res.status(500).json({ error: content.server.internalServerError });
   }
 };

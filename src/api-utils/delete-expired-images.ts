@@ -1,3 +1,4 @@
+import content from "@/content";
 import { Image, PrismaClient } from "@prisma/client";
 import fs from "fs";
 
@@ -39,7 +40,7 @@ const deleteExpiredImages = async () => {
 
     console.log(`Deleted ${expiredImages.length} expired images.`);
   } catch (error) {
-    console.error("Error deleting expired images:", error);
+    console.error(content.server.deleteImageError, error);
   }
 };
 

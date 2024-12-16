@@ -22,6 +22,11 @@ const content = {
     saveImageSuccess: "Image uploaded successfully!",
     saveImageError: "Error uploading file:",
     internalServerError: "Internal Server Error",
+    imageNotFound: "Image not found",
+    imageFound: "Successfully found image path",
+    imageFileNotFound: "Image file not found",
+    getImageError: "Error fetching image:",
+    deleteImageError: "Error deleting expired images:",
   },
 };
 
