@@ -1,4 +1,4 @@
-import content from "@/content";
+import content from "../content";
 import { Image, PrismaClient } from "@prisma/client";
 import fs from "fs";
 

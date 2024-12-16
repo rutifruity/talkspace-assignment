@@ -1,6 +1,5 @@
 import { PrismaClient, Image } from "@prisma/client";
 import fs from "fs";
-import path from "path";
 import deleteExpiredImages from "../delete-expired-images";
 
 jest.mock("@prisma/client", () => {
