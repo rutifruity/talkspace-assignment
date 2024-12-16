@@ -3,6 +3,7 @@ import fs from "fs";
 import prisma from "@/lib/prisma";
 import { v4 as uuidv4 } from "uuid";
 import { NextApiRequest, NextApiResponse } from "next";
+import content from "@/content";
 
 const uploadsDir = path.join(process.cwd(), "public", "uploads");
 
@@ -13,7 +14,7 @@ function validateExpiresAt(expiresAt: any, res) {
   if (expiredDate < currentDate) {
     return res
       .status(400)
-      .json({ error: "The expiredBy date cannot be in the past." });
+      .json({ error: content.server.saveImageExpiredByError });
   }
 }
 
@@ -23,9 +24,7 @@ export const saveImage = async (req: NextApiRequest, res: NextApiResponse) => {
     const { expiresAt } = req.body;
 
     if (!file || !expiresAt) {
-      return res
-        .status(400)
-        .json({ error: "File or expiration time is missing." });
+      return res.status(400).json({ error: content.server.missingData });
     }
 
     validateExpiresAt(expiresAt, res);
@@ -44,11 +43,11 @@ export const saveImage = async (req: NextApiRequest, res: NextApiResponse) => {
     });
 
     return res.status(201).json({
-      message: "Image uploaded successfully!",
+      message: content.server.saveImageSuccess,
       url: `http://localhost:3000/image/image-display?imageId=${image.id}`,
     });
   } catch (error) {
-    console.error("Error uploading file:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    console.error(content.server.saveImageError, error);
+    return res.status(500).json({ error: content.server.internalServerError });
   }
 };

@@ -16,6 +16,13 @@ const content = {
     imageNotFound: "Image not found or has expired.",
     errorFetching: "An error occurred while fetching the image",
   },
+  server: {
+    saveImageExpiredByError: "The expires by date cannot be in the past.",
+    missingData: "File or expiration time is missing.",
+    saveImageSuccess: "Image uploaded successfully!",
+    saveImageError: "Error uploading file:",
+    internalServerError: "Internal Server Error",
+  },
 };
 
 export default content;
