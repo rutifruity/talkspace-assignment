@@ -6,6 +6,17 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 const uploadsDir = path.join(process.cwd(), "public", "uploads");
 
+function validateExpiresAt(expiresAt: any, res) {
+  const currentDate = new Date();
+  const expiredDate = new Date(expiresAt);
+
+  if (expiredDate < currentDate) {
+    return res
+      .status(400)
+      .json({ error: "The expiredBy date cannot be in the past." });
+  }
+}
+
 export const saveImage = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const file = (req as any).file;
@@ -16,6 +27,8 @@ export const saveImage = async (req: NextApiRequest, res: NextApiResponse) => {
         .status(400)
         .json({ error: "File or expiration time is missing." });
     }
+
+    validateExpiresAt(expiresAt, res);
 
     const uniqueId = uuidv4();
     const fileExtension = path.extname(file.originalname);

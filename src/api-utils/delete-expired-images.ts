@@ -1,8 +1,25 @@
-import { PrismaClient } from "@prisma/client";
+import { Image, PrismaClient } from "@prisma/client";
 import fs from "fs";
-import path from "path";
 
 const prisma = new PrismaClient();
+
+function deleteImagesFromPublicFolder(expiredImages: Image[]): void {
+  expiredImages.map((image: Image) => {
+    if (fs.existsSync(image.url)) {
+      fs.unlinkSync(image.url);
+    }
+  });
+}
+
+async function deleteImagesFromPrisma(expiredImages: Image[]): Promise<void> {
+  const ids = expiredImages.map((image) => image.id);
+
+  await prisma.image.deleteMany({
+    where: {
+      id: { in: ids },
+    },
+  });
+}
 
 const deleteExpiredImages = async () => {
   const currentTime = new Date();
@@ -16,19 +33,9 @@ const deleteExpiredImages = async () => {
       },
     });
 
-    for (const image of expiredImages) {
-      const filePath = path.join(process.cwd(), "public", image.url);
+    await deleteImagesFromPrisma(expiredImages);
 
-      if (fs.existsSync(filePath)) {
-        fs.unlinkSync(filePath);
-      }
-
-      await prisma.image.delete({
-        where: {
-          id: image.id,
-        },
-      });
-    }
+    deleteImagesFromPublicFolder(expiredImages);
 
     console.log(`Deleted ${expiredImages.length} expired images.`);
   } catch (error) {

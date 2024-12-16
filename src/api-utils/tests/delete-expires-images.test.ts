@@ -34,18 +34,17 @@ describe("deleteExpiredImages", () => {
 
     (mockPrisma.image.findMany as jest.Mock).mockResolvedValue([expiredImage]);
 
-    mockPrisma.image.delete = jest
+    mockPrisma.image.deleteMany = jest
       .fn()
       .mockResolvedValue({ id: expiredImage.id } as Image);
 
     await deleteExpiredImages();
 
-    expect(mockPrisma.image.delete).toHaveBeenCalledWith({
-      where: { id: expiredImage.id },
+    expect(mockPrisma.image.deleteMany).toHaveBeenCalledWith({
+      where: { id: { in: [expiredImage.id] } },
     });
 
-    const filePath = path.join(process.cwd(), "public", expiredImage.url);
-    expect(fs.unlinkSync).toHaveBeenCalledWith(filePath);
+    expect(fs.unlinkSync).toHaveBeenCalledWith(expiredImage.url);
   });
 
   it("should not delete any images if none are expired", async () => {
@@ -61,12 +60,12 @@ describe("deleteExpiredImages", () => {
     const expiredImage = {
       id: "image1-uuid",
       url: "/uploads/image1.jpg",
-      expiresAt: new Date(new Date().getTime() - 1000), // expired
+      expiresAt: new Date(new Date().getTime() - 1000),
     };
 
     (mockPrisma.image.findMany as jest.Mock).mockResolvedValue([expiredImage]);
 
-    mockPrisma.image.delete = jest
+    mockPrisma.image.deleteMany = jest
       .fn()
       .mockRejectedValueOnce(new Error("Database error"));
 
