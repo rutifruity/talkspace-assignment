@@ -13,7 +13,6 @@ const ImageDisplayPage = () => {
   const { imageId: imageID } = router.query;
 
   const { image, loading, error } = useImageDisplay(imageID);
-  console.log("image", image);
 
   return (
     <PageLayout>
